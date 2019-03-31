@@ -1,0 +1,7 @@
+[PathSetting]
+csvDir = "csv" # シリアライズ対象となるCSVファイルが置かれているディレクトリ
+binaryDir = "bin" # シリアライズしたバイナリファイルの出力先のディレクトリ
+headerDir = "header" # アクセサソースコードを出力するディレクトリ
+[AccessorSetting]
+namespaceValue = "Militum" # アクセサソースコードに出力する名前空間
+loadBinaryDir = "Resources/TableData" # 実際にアプリからバイナリを読み込む際に参照するディレクトリ
