@@ -1,0 +1,2 @@
+# MasterDataMakerForOpenSiv3D
+規定のCSVファイルをOpenSiv3D対応のバイナリファイルとソースコードに変換するツール
