@@ -5,4 +5,3 @@ headerDir = "header" # アクセサソースコードを出力するディレク
 [AccessorSetting]
 namespaceValue = "Militum" # アクセサソースコードに出力する名前空間
 loadBinaryDir = "Resources/TableData" # 実際にアプリからバイナリを読み込む際に参照するディレクトリ
-parentClassPath  = "../" #共通親クラスまでのパス
