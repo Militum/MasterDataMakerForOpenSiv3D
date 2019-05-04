@@ -22,7 +22,7 @@ namespace Militum
 	void exportSignatureCode(TextWriter& writer, const String& filename)
 	{
 		writer.writeln(U"/**");
-		writer.writeln(U"* @file " + filename);
+		writer.writeln(U"* @file " + filename + HPP);
 		writer.writeln(U"*");
 		writer.writeln(U"* @brief This source was made by auto MasterData source code generate tool.");
 		writer.writeln(U"*");
@@ -99,10 +99,10 @@ namespace Militum
 	/// </summary>
 	/// <param name="writer"></param>
 	/// <returns></returns>
-	void exportIncludePath(TextWriter& writer)
+	void exportIncludePath(TextWriter& writer, const String& parentClassPath)
 	{
 		writer.writeln(U"#include <Siv3d.hpp>");
-		writer.writeln(U"#include \"MasterData.hpp\"");
+		writer.writeln(U"#include \"" + parentClassPath +  U"MasterData.hpp\"");
 		writer.writeln();
 	}
 
@@ -177,7 +177,7 @@ namespace Militum
 			const String loadBinaryDirectory = config.accessorSetting_.loadBinaryDir;
  			exportSignatureCode(accessorWriter, className);
 			exportIncludeGuardBegin(accessorWriter, namespaceValue, className);
-			exportIncludePath(accessorWriter);
+			exportIncludePath(accessorWriter, parentClassPath);
 			exportNameSpaceBegin(accessorWriter, namespaceValue);
 			exportAccessor(accessorWriter, className, masterData, loadBinaryDirectory);
 			exportNameSpaceEnd(accessorWriter, namespaceValue);

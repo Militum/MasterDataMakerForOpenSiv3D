@@ -67,10 +67,12 @@ namespace Militum
 				S3DCFG_LOAD_SECTION(U"AccessorSetting");
 				S3DCFG_LOAD_VALUE(namespaceValue);
 				S3DCFG_LOAD_VALUE(loadBinaryDir);
+				S3DCFG_LOAD_VALUE(parentClassPath);
 			}
 
 			String namespaceValue;
 			String loadBinaryDir;
+			String parentClassPath;
 
 		} accessorSetting_;
 	};
