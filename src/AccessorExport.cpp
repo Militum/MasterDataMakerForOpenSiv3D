@@ -154,7 +154,7 @@ namespace Militum
 		writer.writeln(U"\t{");
 		writer.writeln(U"\tpublic:");
 		writer.writeln(U"\t\t" + baseName + U"()");
-		writer.writeln(U"\t\t\t: MasterData(\"" + loadBinaryDirectory + U"/" + baseName + EXTENSION_BIN + U"\")");
+		writer.writeln(U"\t\t\t: MasterData(U\"" + loadBinaryDirectory + U"/" + baseName + EXTENSION_BIN + U"\")");
 		writer.writeln(U"\t\t{");
 		writer.writeln(U"\t\t}");
 		writer.writeln(U"\t\tvirtual ~" + baseName + U"()");
