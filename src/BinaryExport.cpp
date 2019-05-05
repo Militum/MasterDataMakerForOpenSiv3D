@@ -60,25 +60,25 @@ namespace Militum
 		switch (writeType)
 		{
 		case WriteType::Int32:
-			binaryWriter(record.getOpt<int32>(index));
+			binaryWriter(record.getOpt<int32>(index).value());
 			break;
 		case WriteType::UInt32:
-			binaryWriter(record.getOpt<uint32>(index));
+			binaryWriter(record.getOpt<uint32>(index).value());
 			break;
 		case WriteType::Int64:
-			binaryWriter(record.getOpt<int64>(index));
+			binaryWriter(record.getOpt<int64>(index).value());
 			break;
 		case WriteType::UInt64:
-			binaryWriter(record.getOpt<uint64>(index));
+			binaryWriter(record.getOpt<uint64>(index).value());
 			break;
 		case WriteType::Float:
-			binaryWriter(record.getOpt<float>(index));
+			binaryWriter(record.getOpt<float>(index).value());
 			break;
 		case WriteType::Double:
-			binaryWriter(record.getOpt<double>(index));
+			binaryWriter(record.getOpt<double>(index).value());
 			break;
 		case WriteType::String:
-			binaryWriter(record.getOpt<String>(index));
+			binaryWriter(record.getOpt<String>(index).value());
 			break;
 		default:
 			throw MasterDataException(U"非対応の型を使用しています");
