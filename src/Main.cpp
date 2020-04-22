@@ -2,14 +2,14 @@
 //
 // TableConveterForOpenSiv3D
 //
-// Copyright (c) 2019 Militum
+// Copyright (c) 2019-2020 Militum
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
 //
 //-----------------------------------------------
 
-#include <Siv3D.hpp> // OpenSiv3D v0.3.2
+#include <Siv3D.hpp> // OpenSiv3D v0.4.2
 #include "Constant.hpp"
 #include "ConfigData.hpp"
 #include "MasterData.hpp"
@@ -86,7 +86,7 @@ void Main()
 		System::ShowMessageBox(U"Error", U"原因不明のエラーが発生...", MessageBoxStyle::Error);
 	}
 
-	System::SetExitEvent(WindowEvent::AnyKey);
+	System::SetTerminationTriggers(UserAction::AnyKeyDown);
 	Print(U"Please Press Any Key...");
 	while (System::Update())
 	{
