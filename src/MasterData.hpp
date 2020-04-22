@@ -2,7 +2,7 @@
 //
 // TableConveterForOpenSiv3D
 //
-// Copyright (c) 2019 Militum
+// Copyright (c) 2019-2020 Militum
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
@@ -85,10 +85,10 @@ namespace Militum
 
 			// TODO: ‚±‚±‚ÉƒRƒƒ“ƒgs‚Ì‰ğÍ‚ğ’Ç‰Á‚·‚é
 			for (
-				uint32 index = VALUES_ROW_NUMBER, maxIndex = rows() - VALUES_ROW_NUMBER;
+				uint32 index = VALUES_ROW_NUMBER, maxIndex = rows() - VALUES_ROW_NUMBER + 1;
 				index <= maxIndex;
 				++index
-			)
+				)
 			{
 				values_.emplace_back(getRow(index));
 			}

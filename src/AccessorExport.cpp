@@ -2,7 +2,7 @@
 //
 // TableConveterForOpenSiv3D
 //
-// Copyright (c) 2019 Militum
+// Copyright (c) 2019-2020 Militum
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
@@ -22,7 +22,7 @@ namespace Militum
 	void exportSignatureCode(TextWriter& writer, const String& filename)
 	{
 		writer.writeln(U"/**");
-		writer.writeln(U"* @file " + filename + HPP);
+		writer.writeln(U"* @file " + filename + EXTENSION_HPP);
 		writer.writeln(U"*");
 		writer.writeln(U"* @brief This source was made by auto MasterData source code generate tool.");
 		writer.writeln(U"*");
@@ -102,7 +102,7 @@ namespace Militum
 	void exportIncludePath(TextWriter& writer, const String& parentClassPath)
 	{
 		writer.writeln(U"#include <Siv3d.hpp>");
-		writer.writeln(U"#include \"" + parentClassPath +  U"MasterData.hpp\"");
+		writer.writeln(U"#include \"" + parentClassPath + U"MasterData.hpp\"");
 		writer.writeln();
 	}
 
@@ -121,6 +121,7 @@ namespace Militum
 		const Array<String> types = masterData.getTypes();
 		const uint32 columnSize = columns.size();
 		const String structName = baseName + U"Record";
+		const String accessorName = baseName + U"Accessor";
 
 		writer.writeln(U"\t/// <summary>");
 		writer.writeln(U"\t/// MasterData " + structName);
@@ -148,16 +149,16 @@ namespace Militum
 		writer.writeln(U"\t};");
 		writer.writeln();
 		writer.writeln(U"\t/// <summary>");
-		writer.writeln(U"\t/// MasterData " + baseName);
+		writer.writeln(U"\t/// MasterData " + accessorName);
 		writer.writeln(U"\t/// </summary>");
-		writer.writeln(U"\tclass " + baseName + U" : public MasterData<" + *types.begin() + U", " + structName + U">");
+		writer.writeln(U"\tclass " + accessorName + U" : public MasterData<" + *types.begin() + U", " + structName + U">");
 		writer.writeln(U"\t{");
 		writer.writeln(U"\tpublic:");
-		writer.writeln(U"\t\t" + baseName + U"()");
+		writer.writeln(U"\t\t" + accessorName + U"()");
 		writer.writeln(U"\t\t\t: MasterData(U\"" + loadBinaryDirectory + U"/" + baseName + EXTENSION_BIN + U"\")");
 		writer.writeln(U"\t\t{");
 		writer.writeln(U"\t\t}");
-		writer.writeln(U"\t\tvirtual ~" + baseName + U"()");
+		writer.writeln(U"\t\tvirtual ~" + accessorName + U"()");
 		writer.writeln(U"\t\t{");
 		writer.writeln(U"\t\t}");
 		writer.writeln(U"\t};");
@@ -176,7 +177,7 @@ namespace Militum
 			const String namespaceValue = config.accessorSetting_.namespaceValue;
 			const String loadBinaryDirectory = config.accessorSetting_.loadBinaryDir;
 			const String parentClassPath = config.accessorSetting_.parentClassPath;
- 			exportSignatureCode(accessorWriter, className);
+			exportSignatureCode(accessorWriter, className);
 			exportIncludeGuardBegin(accessorWriter, namespaceValue, className);
 			exportIncludePath(accessorWriter, parentClassPath);
 			exportNameSpaceBegin(accessorWriter, namespaceValue);

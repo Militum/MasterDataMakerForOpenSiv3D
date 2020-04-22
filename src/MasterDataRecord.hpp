@@ -2,7 +2,7 @@
 //
 // TableConveterForOpenSiv3D
 //
-// Copyright (c) 2019 Militum
+// Copyright (c) 2019-2020 Militum
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
