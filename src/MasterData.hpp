@@ -32,7 +32,33 @@ namespace Militum
 		MasterData(const FilePath& path)
 			: CSVData(path)
 		{
-			initialize();
+		}
+
+		/// <summary>
+		/// 初期化
+		/// </summary>
+		void initialize()
+		{
+			if (getColumns().size() != getTypes().size())
+			{
+				throw MasterDataException(U"カラム数と型の定義数が異なります");
+			}
+
+			Array<String> keys = {};
+			for (
+				uint32 index = VALUES_ROW_NUMBER, maxIndex = rows() - VALUES_ROW_NUMBER + 1;
+				index <= maxIndex;
+				++index
+				)
+			{
+				const Array<String> row = getRow(index);
+				if (keys.count(row.at(0)))
+				{
+					throw MasterDataException(U"Keyとなる列に重複があります。\n{}行目のデータを確認してください"_fmt(index));
+				}
+				keys.emplace_back(row.at(0));
+				values_.emplace_back(row);
+			}
 		}
 
 		/// <summary>
@@ -72,27 +98,6 @@ namespace Militum
 		}
 
 	private:
-
-		/// <summary>
-		/// 初期化
-		/// </summary>
-		void initialize()
-		{
-			if (getColumns().size() != getTypes().size())
-			{
-				throw MasterDataException(U"カラム数と型の定義数が異なります");
-			}
-
-			// TODO: ここにコメント行の解析を追加する
-			for (
-				uint32 index = VALUES_ROW_NUMBER, maxIndex = rows() - VALUES_ROW_NUMBER + 1;
-				index <= maxIndex;
-				++index
-				)
-			{
-				values_.emplace_back(getRow(index));
-			}
-		}
 
 		/// <summary>
 		/// インデックスが妥当か判定
