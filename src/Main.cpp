@@ -49,6 +49,7 @@ void Main()
 
 
 		Array<FilePath> contents = FileSystem::DirectoryContents(config.pathSetting_.csvDir);
+		std::map<String, MasterData> masterDataMap;
 		for (const String& content : contents)
 		{
 			if (!(FileSystem::IsFile(content)
@@ -58,16 +59,23 @@ void Main()
 			}
 			const String baseName = FileSystem::BaseName(content);
 			MasterData data{ content };
+			Print(baseName + U" Load...");
+			data.initialize();
+			masterDataMap.insert({ baseName, data });
+		}
 
-			Print(baseName + U" Start...");
-
+		for (const auto& masterData : masterDataMap)
+		{
+			const String baseName = masterData.first;
+			Print(baseName + U" Export Accessor...");
 			const FilePath accessorPath{ config.pathSetting_.headerDir + U"/" + baseName + EXTENSION_HPP };
 			TextWriter accessorWriter(accessorPath);
-			Accessor::execute(accessorWriter, data, config);
+			Accessor::execute(accessorWriter, masterData.second, config);
 
+			Print(baseName + U" Export Binary...");
 			const FilePath binaryPath{ config.pathSetting_.binaryDir + U"/" + baseName + EXTENSION_BIN };
 			Serializer<BinaryWriter> binaryWriter(binaryPath);
-			Binary::execute(binaryWriter, data);
+			Binary::execute(binaryWriter, masterData.second);
 
 			Print(baseName + U" Successed...");
 		}

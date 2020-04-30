@@ -41,8 +41,27 @@ namespace Militum
 			{
 				throw MasterDataException(U"異常なindexが指定されました");
 			}
+			const String value = values_.at(index);
+			if (value.isEmpty())
+			{
+				// 空文字の場合は予期せぬデータを混入させないために例外にしておく
+				throw MasterDataException(U"文字列以外は空文字禁止です");
+			}
+			return ParseOpt<Type>(value);
+		}
 
-			return ParseOpt<Type>(values_.at(index));
+		/// <summary>
+		/// バイナリ書き込みの際、文字列を指定した型で取得してから書き込む
+		/// </summary>
+		template <>
+		Optional<String> getOpt(const uint32 index) const
+		{
+			if (!isValidIndex(index))
+			{
+				throw MasterDataException(U"異常なindexが指定されました");
+			}
+
+			return values_.at(index);
 		}
 
 	private:
